@@ -11,6 +11,8 @@
   position: relative;
   cursor: pointer;
   overflow: hidden;
+  display: block;
+  text-decoration: none;
 }
 
 .series-cover-img {
@@ -19,7 +21,12 @@
   background-size: cover;
   background-position: center;
   filter: grayscale(0.1);
-  transition: filter 0.35s ease, transform 0.5s ease;
+  opacity: 0;
+  transition: opacity 0.6s ease, filter 0.35s ease, transform 0.5s ease;
+}
+
+.series-cover-img.loaded {
+  opacity: 1;
 }
 
 .series-cover:hover .series-cover-img {
@@ -48,35 +55,38 @@
   text-transform: uppercase;
 }
 
-.back-btn {
-  font-size: 0.75rem;
-  cursor: pointer;
-  opacity: 0.5;
-  transition: opacity 0.2s;
-  margin-right: 1rem;
-}
-
-.back-btn:hover {
-  opacity: 1;
-}
-
-.series-grid-nav {
-  position: fixed;
-  bottom: 1.5rem;
-  left: 2rem;
-  z-index: 110;
+.series-hero {
+  position: relative;
+  width: 100%;
+  height: 42vh;
+  background-size: cover;
+  background-position: center;
   display: flex;
-  align-items: center;
-  gap: 1rem;
-  font-size: 0.8rem;
-  mix-blend-mode: difference;
-  color: #fff;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 2.5rem;
 }
 
-.series-grid-title {
+.series-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.5) 55%,
+    rgba(255,255,255,1) 100%);
+  pointer-events: none;
+}
+
+.series-title {
+  position: relative;
+  z-index: 1;
+  font-size: clamp(2.5rem, 6vw, 5rem);
   font-weight: bold;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  color: #111;
+  text-align: center;
+  opacity: 0;
 }
 
 .series-detail {
@@ -87,8 +97,10 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: 25vw;
-  gap: 2px;
+  gap: 12px;
   width: 100vw;
+  padding: 12px;
+  box-sizing: border-box;
 }
 
 .grid-thumb {
@@ -103,11 +115,12 @@
   object-fit: cover;
   display: block;
   filter: grayscale(0.2);
-  transition: filter 0.35s ease, opacity 0.35s ease;
+  transition: filter 0.35s ease, transform 0.4s ease;
 }
 
-.grid-thumb:hover img {
+.series-grid:not(.dimmed) .grid-thumb:hover img {
   filter: grayscale(0);
+  transform: scale(1.04);
 }
 
 .series-grid.dimmed .grid-thumb img {
@@ -119,6 +132,7 @@
   filter: grayscale(0);
   opacity: 1;
 }
+
 
 .grid-center-overlay {
   position: fixed;
@@ -137,3 +151,5 @@
   max-height: 72vh;
   object-fit: contain;
 }
+
+
