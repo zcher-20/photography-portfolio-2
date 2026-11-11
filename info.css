@@ -9,7 +9,7 @@
 
 .info-text {
   max-width: 50%;
-  padding-top: 2.5rem;
+  padding-top: 1rem;
   padding-left: 2rem;
 }
 
@@ -33,14 +33,13 @@
   align-items: flex-end;
   justify-content: flex-end;
   gap: 1.5rem;
-  margin-top: auto;
-  padding-top: 3rem;
+  margin-top: 0.5rem;
   align-self: flex-end;
   margin-right: 5%;
 }
 
 .info-image {
-  max-width: 220px;
+  max-width: 280px;
 }
 
 .info-image img {
@@ -50,9 +49,10 @@
 }
 
 .info-contact {
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   line-height: 1.6;
-  padding-bottom: 0.25rem;
+  align-self: flex-start;
+  padding-top: 0.1rem;
 }
 
 .info-link {
