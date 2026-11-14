@@ -32,9 +32,9 @@ const firstThumbs = Array.from(document.querySelectorAll('.grid-thumb')).slice(0
 tl.add(() => {
   firstThumbs.forEach((thumb, i) => {
     const img = thumb.querySelector('img');
-    const col = i % 4;
     const row = Math.floor(i / 4);
-    const delay = col * 0.07 + row * 0.1;
+    const col = i % 4;
+    const delay = row * 0.12 + col * 0.02;
     const animate = () => gsap.to(img, { opacity: 1, duration: 0.55, delay, ease: 'power2.out' });
     if (img.complete && img.naturalWidth > 0) animate();
     else img.addEventListener('load', animate, { once: true });
