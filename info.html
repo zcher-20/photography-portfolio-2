@@ -38,7 +38,7 @@
 
     <div class="info-bottom">
       <div class="info-image">
-        <img src="images-web/switzerland/Tezza-8874.JPG" alt="">
+        <img src="images-web/people/info-portrait.jpg" alt="">
       </div>
       <div class="info-contact">
         <a href="mailto:zaynebcheriff@gmail.com">zaynebcheriff@gmail.com &#8599;</a><br>
@@ -64,5 +64,14 @@
       </a>
     </div>
   </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script>
+    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+    tl.fromTo('.info-lead', { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7 })
+      .fromTo('.info-body p', { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, stagger: 0.12 }, '-=0.3')
+      .fromTo('.info-image', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7 }, '-=0.3')
+      .fromTo('.info-contact a', { y: 12, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, stagger: 0.1 }, '-=0.4');
+  </script>
 </body>
 </html>
