@@ -1,3 +1,9 @@
+/* Pre-hide elements animated on load to prevent flash */
+.page-series header {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
 /* Gallery background */
 body.page-gallery::before {
   content: '';
@@ -11,7 +17,8 @@ body.page-gallery::before {
   pointer-events: none;
 }
 
-.page-gallery footer {
+.page-gallery footer,
+.page-series footer {
   background: transparent;
 }
 
@@ -73,15 +80,14 @@ body.page-gallery::before {
 }
 
 .series-hero {
-  position: relative;
-  width: 100%;
-  height: 42vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
   background-size: cover;
   background-position: center;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  padding-bottom: 2.5rem;
+  z-index: -1;
 }
 
 .series-hero::after {
@@ -90,8 +96,8 @@ body.page-gallery::before {
   inset: 0;
   background: linear-gradient(to bottom,
     rgba(255,255,255,0) 0%,
-    rgba(255,255,255,0.5) 55%,
-    rgba(255,255,255,1) 100%);
+    rgba(255,255,255,0.6) 50%,
+    rgba(255,255,255,0.85) 100%);
   pointer-events: none;
 }
 
@@ -106,8 +112,9 @@ body.page-gallery::before {
   opacity: 0;
 }
 
-.series-detail {
-  min-height: 100vh;
+.page-series .series-grid {
+  margin-top: 4rem;
+  flex: 1;
 }
 
 .series-grid {

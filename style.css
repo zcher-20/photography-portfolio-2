@@ -251,7 +251,7 @@ header a,
   position: fixed;
   inset: 0;
   z-index: 200;
-  background: #ffffff;
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -259,6 +259,22 @@ header a,
   pointer-events: none;
   transition: opacity 0.4s ease;
   cursor: none;
+}
+
+.lightbox-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: blur(40px) brightness(0.35) saturate(0.7);
+  transform: scale(1.08);
+  z-index: 0;
+  transition: background-image 0.4s ease;
+}
+
+.lightbox-img {
+  position: relative;
+  z-index: 1;
 }
 
 .lightbox.open {
@@ -270,6 +286,8 @@ header a,
   max-width: 90vw;
   max-height: 90vh;
   object-fit: contain;
+  position: relative;
+  z-index: 1;
 }
 
 .lightbox-cursor {
