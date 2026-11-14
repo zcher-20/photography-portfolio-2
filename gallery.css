@@ -1,3 +1,20 @@
+/* Gallery background */
+body.page-gallery::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url('images-web/london/Tezza-6695.JPG');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.12;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.page-gallery footer {
+  background: transparent;
+}
+
 /* Series index */
 .series-index {
   display: grid;
