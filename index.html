@@ -35,7 +35,7 @@
   <main>
     <div class="hero">
       <div class="hero-image">
-        <img src="images-web/london/Tezza-6695.JPG" alt="Tezza 6695" id="hero-img-back" class="hero-back" fetchpriority="high">
+<img src="images-web/london/Tezza-6695.JPG" alt="Tezza 6695" id="hero-img-back" class="hero-back" fetchpriority="high">
         <img src="images-web/london/Tezza-6695.JPG" alt="Tezza 6695" id="hero-img" class="hero-front">
       </div>
     </div>
@@ -129,6 +129,9 @@ const thumbs = document.querySelectorAll('.thumbnail');
     hero.addEventListener('load', () => { updateUI(); reveal(); });
     if (hero.complete) { updateUI(); reveal(); }
 
+    hero.addEventListener('load', () => { updateUI(); reveal(); });
+    if (hero.complete) { updateUI(); reveal(); }
+
     // Parallax — scale slightly to avoid edge gaps
     gsap.set([heroFront, heroBack], { scale: 1.06 });
     document.addEventListener('mousemove', (e) => {
@@ -216,6 +219,23 @@ const thumbs = document.querySelectorAll('.thumbnail');
     lightbox.addEventListener('click', () => {
       closeLightbox();
     });
+
+    // Touch swipe for home lightbox
+    let touchStartX = 0, touchStartY = 0;
+    lightbox.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+    lightbox.addEventListener('touchend', (e) => {
+      if (!lightbox.classList.contains('open')) return;
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      const dy = e.changedTouches[0].clientY - touchStartY;
+      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
+        dx < 0 ? nextImage() : (lightboxIndex = (lightboxIndex - 1 + sources.length) % sources.length, gsap.to(lightboxImg, { opacity: 0, duration: 0.2, ease: 'power2.inOut', onComplete: () => { const p = new Image(); p.src = sources[lightboxIndex]; p.onload = () => { lightboxImg.src = p.src; lightboxBg.style.backgroundImage = `url('${p.src}')`; gsap.to(lightboxImg, { opacity: 1, duration: 0.2, ease: 'power2.inOut' }); }; }}));
+      } else if (dy > 60 && Math.abs(dy) > Math.abs(dx)) {
+        closeLightbox();
+      }
+    }, { passive: true });
 
     document.addEventListener('keydown', (e) => {
       if (!lightbox.classList.contains('open')) return;

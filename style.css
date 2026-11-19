@@ -340,7 +340,7 @@ header a,
   }
 
   .header-left h1 {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
 
   .header-center {
@@ -349,38 +349,50 @@ header a,
 
   .header-center a,
   .header-right .contact-link {
-    font-size: 0.9rem;
-  }
-
-  .hero {
-    padding: 1rem 1.25rem;
-  }
-
-  .hero-image {
-    max-width: 100%;
+    font-size: 0.85rem;
   }
 
   .thumbnail-strip {
-    padding: 0 1.25rem;
+    padding: 0 0.75rem;
+    gap: 6px;
   }
 
   .thumbnail {
-    width: 70px;
-    height: 70px;
+    width: 72px;
+    height: 72px;
   }
 
   footer {
     padding: 0.75rem 1.25rem 1.25rem;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .lightbox-img {
+    max-width: 96vw;
+    max-height: 80vh;
   }
 }
 
 @media (max-width: 480px) {
-  .header-center {
+  header {
+    padding: 0.85rem 1rem 0.65rem;
+  }
+
+  .header-right {
     display: none;
+  }
+
+  .header-center {
+    gap: 0.75rem;
   }
 
   .thumbnail {
     width: 60px;
     height: 60px;
+  }
+
+  footer {
+    font-size: 0.75rem;
   }
 }

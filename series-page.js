@@ -271,6 +271,23 @@ document.getElementById('fs-dark').addEventListener('click', (e) => {
   closeLightbox();
 });
 
+// Touch swipe
+let touchStartX = 0, touchStartY = 0;
+fsOverlay.addEventListener('touchstart', (e) => {
+  touchStartX = e.touches[0].clientX;
+  touchStartY = e.touches[0].clientY;
+}, { passive: true });
+fsOverlay.addEventListener('touchend', (e) => {
+  if (!lightboxOpen) return;
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  const dy = e.changedTouches[0].clientY - touchStartY;
+  if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
+    dx < 0 ? goTo(currentIndex + 1) : goTo(currentIndex - 1);
+  } else if (dy > 60 && Math.abs(dy) > Math.abs(dx)) {
+    closeLightbox();
+  }
+}, { passive: true });
+
 // Keyboard — listen on both window and overlay for maximum compatibility
 function handleKey(e) {
   if (!lightboxOpen) return;
